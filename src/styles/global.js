@@ -4,12 +4,18 @@ export const GlobalStyle = createGlobalStyle`
   html, body, #root {
     min-height: 100%;
   }
-  body {
-    background: ${(props) => props.theme.colors.gray900};
-    color: ${(props) => props.theme.colors.gray600};
-    font-family: ${(props) => props.theme.fontFamily.sans};
-    padding: 1rem;
+  #root {
+    margin: 0;
   }
+  body {
+    padding: 0;
+    display: flex;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(180deg, #d3d3da 0%, #d4d9e7 100%);
+}
 
   h1, h2, h3, h4, h5, h6 {
     font-family: ${(props) => props.theme.fontFamily.heading};
