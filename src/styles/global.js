@@ -6,6 +6,9 @@ export const GlobalStyle = createGlobalStyle`
   }
   #root {
     margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   body {
     padding: 0;
@@ -21,5 +24,14 @@ export const GlobalStyle = createGlobalStyle`
     font-family: ${(props) => props.theme.fontFamily.heading};
     font-weight: bold;
     color: ${(props) => props.theme.colors.white};
+
+    * {
+    text-decoration: none;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+ 
   }
 `;

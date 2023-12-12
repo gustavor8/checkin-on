@@ -1,65 +1,67 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  * {
-    text-decoration: none;
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-  }
-
-  body {
-    padding: 0;
-    display: flex;
-    margin: 0;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: linear-gradient(180deg, #d3d3da 0%, #d4d9e7 100%);
-  }
-
-  .main {
-    width: 80%;
-    height: 90%;
-    justify-content: center;
-    align-items: center;
-    border-radius: 25px;
-    box-shadow: 2px 2px 2px 2px black, -2px -2px 0.4em black;
-    background: linear-gradient(180deg, #ffffff 0%, #c8c8d9 100%);
-    max-width: 400px;
-  }
-
+  width: 80%;
+  height: 90%;
+  justify-content: center;
+  align-items: center;
+  border-radius: 25px;
+  box-shadow: 2px 2px 2px 2px black, -2px -2px 0.4em black;
+  background: linear-gradient(180deg, #ffffff 0%, #c8c8d9 100%);
+  min-height: 550px;
+  min-width: 300px;
+  
   .main-higher {
-    height: 40%;
-    margin-top: 10px;
-    background-image: url('./images/logogg.png');
+    height:50%;
+    min-height: 275px;
+    background-image: url('./logogg.png');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
     border-top-right-radius: 25px;
     border-top-left-radius: 25px;
+    opacity:0.50;
   }
 
   .main-bottom {
-    height: 60%;
+    margin-top: 20px;
+    height: 200px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-  }
 
-  .main-bottom-form {
-    margin-top: 40px;
-    height: 60%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    flex-direction: column;
-  }
+    .main-bottom-form{
+      height: 70%;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      flex-direction: column;
 
-  #inputCPF {
-    border-radius: 10px;
-    text-align: center;
-    font-size: large;
+      #inputCPF {
+        width: 100%;
+        border-radius: 10px;
+        text-align: center;
+        font-size: large;
+        margin-bottom: 20px;
+      }
+    }
+      .main-bottom-bottom {
+        text-align: center;
+
+        p{
+          text-decoration: none;
+          color: grey;
+
+          a{
+            text-decoration:none;
+            color: grey;
+          }
+          a:hover{
+            color: blue;
+          }
+        }
+      }
   }
 `;
 

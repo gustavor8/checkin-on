@@ -10,7 +10,7 @@ export default function Main() {
     const handleButtonClick = () => {
         // Navegar diretamente para a rota desejada
         navigate("./Procedures");
-      };
+    };
 
     function formatCPF(fieldCPF) {
         let CPF = fieldCPF.value.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
@@ -22,8 +22,9 @@ export default function Main() {
     }
     return (
         <Container>
-            <div className="main-higher " />
-
+            <div className="main-higher">
+                <h1>....</h1>
+            </div>
             <div className="main-bottom">
                 <form className="main-bottom-form">
                     <input
@@ -33,6 +34,7 @@ export default function Main() {
                     <button className="button" type="button" onClick={handleButtonClick}>
                         Login
                     </button>
+
                 </form>
                 <div className="main-bottom-bottom">
                     <p>Problemas para acessar?<br />
