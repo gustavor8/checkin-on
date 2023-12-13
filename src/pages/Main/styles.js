@@ -1,15 +1,14 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  width: 80%;
-  height: 90%;
+  width: 100%;
+  height: 100%;
   justify-content: center;
   align-items: center;
   border-radius: 25px;
   box-shadow: 2px 2px 2px 2px black, -2px -2px 0.4em black;
   background: linear-gradient(180deg, #ffffff 0%, #c8c8d9 100%);
-  min-height: 550px;
-  min-width: 300px;
+  
   
   .main-higher {
     height:50%;
@@ -25,7 +24,8 @@ export const Container = styled.div`
 
   .main-bottom {
     margin-top: 20px;
-    height: 200px;
+    height:50%;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -33,6 +33,7 @@ export const Container = styled.div`
 
     .main-bottom-form{
       height: 70%;
+      width: 80%;
       display: flex;
       justify-content: flex-start;
       align-items: center;
@@ -43,12 +44,12 @@ export const Container = styled.div`
         border-radius: 10px;
         text-align: center;
         font-size: large;
-        margin-bottom: 20px;
+        margin-bottom: 25px;
       }
     }
       .main-bottom-bottom {
         text-align: center;
-
+        margin-bottom: 50px;
         p{
           text-decoration: none;
           color: grey;
@@ -63,6 +64,19 @@ export const Container = styled.div`
         }
       }
   }
+  @media screen and (min-width: 390px) {
+    .main-bottom .main-bottom-form #inputCPF {
+      font-size: large;
+      font-size:25px;     
+    }
+  }
+
+  @media screen and (min-width: 900px) {
+    .main-bottom .main-bottom-form #inputCPF {
+      font-size: large;
+      font-size:40px;
+      
+    }
 `;
 
 export default Container;

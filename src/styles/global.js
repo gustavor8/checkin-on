@@ -1,7 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
-  html, body, #root {
+  html, body {
     min-height: 100%;
   }
   #root {
@@ -9,6 +9,8 @@ export const GlobalStyle = createGlobalStyle`
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 90vh;
+    width: 40vh;
   }
   body {
     padding: 0;

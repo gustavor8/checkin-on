@@ -18,7 +18,7 @@ export const ButtonBlack = styled.button`
   position: relative;
   z-index: 0;
   border-radius: 10px;
-
+  font-size:18px;
   &:before {
     content: '';
     background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
@@ -58,6 +58,17 @@ export const ButtonBlack = styled.button`
     left: 0;
     top: 0;
     border-radius: 10px;
+  }
+
+  @media screen and (min-width:390px) {
+    width: 200px;
+    height: 50px;
+    font-size:25px;
+  }
+  @media screen and (min-width: 900px) {
+    width: 230px;
+    height: 60px;
+    font-size:30px;
   }
 `;
 
