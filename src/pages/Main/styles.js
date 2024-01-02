@@ -3,8 +3,6 @@ import styled from 'styled-components';
 export const Container = styled.div`
   width: 100%;
   height: 100%;
-  justify-content: center;
-  align-items: center;
   border-radius: 25px;
   box-shadow: 2px 2px 2px 2px black, -2px -2px 0.4em black;
   background: linear-gradient(180deg, #ffffff 0%, #c8c8d9 100%);
@@ -33,7 +31,7 @@ export const Container = styled.div`
 
     .main-bottom-form{
       height: 70%;
-      width: 80%;
+      width: 85%;
       display: flex;
       justify-content: flex-start;
       align-items: center;
