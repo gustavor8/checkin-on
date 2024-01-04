@@ -1,8 +1,9 @@
 /* eslint-disable no-param-reassign */
 import React, { useState } from "react";
-import { FaTimes} from 'react-icons/fa';
+import { FaTimes } from 'react-icons/fa';
 import { Container } from "../Main/styles";
 import { Format } from "./styles";
+import ButtonComponent from "../../components/Buttons/ButtonComponent";
 
 
 export default function Procedures() {
@@ -30,31 +31,31 @@ export default function Procedures() {
 
 	const [procedures] = useState(initialProcedures);
 	const [selectedProcedures, setSelectedProcedures] = useState([]);
+	const [searchText, setSearchText] = useState('');
 
-	const handleCheckboxChange = (procedureId) => {
+  // checks if the checkbox is in the list of selected ones 
+	const handleCheckboxChange = (procedure) => {
 		setSelectedProcedures((prevSelected) => {
+			const procedureId = procedure.id;
 			if (prevSelected.includes(procedureId)) {
-				// Remover procedimento se já estiver selecionado
 				return prevSelected.filter((id) => id !== procedureId);
 			}
-			// Adicionar procedimento se não estiver selecionado
 			return [...prevSelected, procedureId];
-
 		});
 	};
-	
+
+
 	// Remove the procedure and checked in search
 	const handleRemoveButtonClick = (procedureId) => {
 		setSelectedProcedures((prevSelected) =>
-		  prevSelected.filter((id) => id !== procedureId)
+			prevSelected.filter((id) => id !== procedureId)
 		);
-	
 		// Remova o check do procedimento na div de pesquisa
 		const checkbox = document.getElementById(`procedure-${procedureId}`);
 		if (checkbox) {
-		  checkbox.checked = false;
+			checkbox.checked = false;
 		}
-	  };
+	};
 
 	return (
 		<Container>
@@ -63,19 +64,28 @@ export default function Procedures() {
 					<div className="title" id="title-top">
 						<b>SELECIONE OS PROCEDIMENTOS:</b>
 					</div>
-					<input type="text" id="searchProcedures" placeholder="Busque o procedimento..." />
+					<input
+						type="text"
+						id="searchProcedures"
+						placeholder="Busque o procedimento..."
+						value={searchText}
+						onChange={(event) => setSearchText(event.target.value)}
+					/>
 					<div className="resultSearch">
-						{procedures.map((procedure) => (
-							<div className="procedure" key={procedure.id}>
-								<input
-									type="checkbox"
-									id={`procedure-${procedure.id}`}
-									checked={selectedProcedures.includes(procedure.id)}
-									onChange={() => handleCheckboxChange(procedure.id)}
-								/>
-								<label htmlFor={`procedure-${procedure.id}`}>{procedure.name}</label>
-							</div>
-						))}
+						{procedures
+							.filter((procedure) => procedure.name.toLowerCase().includes(searchText.toLowerCase()))
+							.map((procedure) => (
+								<div className="procedure" key={procedure.id}>
+									<input
+										type="checkbox"
+										id={`procedure-${procedure.id}`}
+										checked={selectedProcedures.includes(procedure.id)}
+										onChange={() => handleCheckboxChange(procedure)}
+									/>
+									<label htmlFor={`procedure-${procedure.id}`}>{procedure.name}</label>
+								</div>
+							))
+						}
 					</div>
 				</div>
 				<div className="proceduresSelected">
@@ -83,18 +93,24 @@ export default function Procedures() {
 						<b>PROCEDIMENTOS SELECIONADOS:</b>
 					</div>
 					<div className="procedureOnSelect">
-						<ul>     
+						<ul>
 							{selectedProcedures.map((selectedId) => (
 								<div className="procedureSelected">
 									<li key={selectedId}>{procedures.find((p) => p.id === selectedId)?.name}</li>
-									<submit className="button"  onClick={() => handleRemoveButtonClick(selectedId)}>
-										<FaTimes id="remove"/>
-                  					</submit>
+									<submit className="button" onClick={() => handleRemoveButtonClick(selectedId)}>
+										<FaTimes id="remove" />
+									</submit>
 								</div>
 							))}
 						</ul>
 					</div>
 				</div>
+				<div className="btns">
+					<ButtonComponent clickFunction={() => alert("Botão cancelar")} childrenText="Cancelar" background="Red" height="35" width="135" />
+					<ButtonComponent clickFunction={() => alert("Botão Salvar")} childrenText="Check-In" background="#83e509" height="35" width="135" />
+
+				</div>
+
 			</Format>
 		</Container>
 	);

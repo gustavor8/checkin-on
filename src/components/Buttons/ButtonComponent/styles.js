@@ -6,19 +6,24 @@ const glowing = keyframes`
   50% { background-position: 400% 0; }
   100% { background-position: 0 0; }
 `;
+// tambem pode ser usado a props assim, fiz diretamente pegando o backgroud já desmontado
+// export const ButtonComponent = styled.button.attrs(props => ({
+//   background: props.background || 'green',
+// }))`
 
-export const ButtonBlack = styled.button`
+export const ButtonStyle = styled.button`
   width: 150px;
   height: 35px;
   border: none;
   outline: none;
   color: #fff;
-  background: #111;
+  background: ${({ background }) => (background)};
   cursor: pointer;
   position: relative;
   z-index: 0;
   border-radius: 10px;
   font-size:18px;
+
   &:before {
     content: '';
     background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
@@ -54,12 +59,19 @@ export const ButtonBlack = styled.button`
     position: absolute;
     width: 100%;
     height: 100%;
-    background: #111;
+    background: ${({ background }) => (background)};
     left: 0;
     top: 0;
     border-radius: 10px;
+    
   }
-
+  
+  .btns button {
+    margin-right: 10px; /* Adiciona espaçamento à direita de cada botão */
+  }
+  
+ 
+  
   @media screen and (min-width:390px) {
     width: 200px;
     height: 50px;
@@ -72,4 +84,4 @@ export const ButtonBlack = styled.button`
   }
 `;
 
-export default ButtonBlack;
+export default ButtonStyle;

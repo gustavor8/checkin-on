@@ -24,7 +24,7 @@ align-items: center;
   }
 
   .resultSearch {
-    display: flex;
+
     align-items: flex-start; /* Ajusta o alinhamento dos itens para a esquerda */ 
     
     .procedure{
@@ -32,6 +32,7 @@ align-items: center;
       width: 98%;
       display:flex;
       font-size: 20px;
+
       
       input[type="checkbox"] {
         width: 15px; /* Ajuste a largura do checkbox conforme necessário */
@@ -44,7 +45,7 @@ align-items: center;
     margin-top:-5px;
     overflow-y: auto;
     text-align: center;
-    display: flex; 
+    display: block; 
     justify-content: flex-start;
     align-items: center;
     border: 1px solid #ccc;
@@ -78,7 +79,7 @@ align-items: center;
     flex-direction: column; /* Ajusta o layout para ser uma coluna */
     max-height: 10%;
     overflow: auto;
-    max-height: 40%; /* Defina a altura máxima diretamente na classe procedureOnSelect */
+    max-height: 41.5%; /* Defina a altura máxima diretamente na classe procedureOnSelect */
 
     
     ul{
@@ -119,12 +120,27 @@ align-items: center;
           color:red;
         }
       }
-      
-
     }
   }
-  
 }
+
+
+.btns {
+  height:8%;
+  margin-top: 3px;
+  display:flex;
+  justify-content:center;
+  flex-wrap: wrap;
+
+  button {
+    margin-right: 10px;
+    margin-bottom:5px;
+  }
+
+
+}
+  
+
 
 @media screen and (max-height: 714px) {
   .search{
@@ -134,6 +150,7 @@ align-items: center;
   
   }
 }
+
 
 
 `;
