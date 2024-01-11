@@ -32,12 +32,15 @@ align-items: center;
       width: 98%;
       display:flex;
       font-size: 20px;
-
       
       input[type="checkbox"] {
         width: 15px; /* Ajuste a largura do checkbox conforme necessário */
         margin-right: 5px;
+        cursor: pointer;
       }  
+      label{
+        cursor: pointer;
+      }
     }
 
     height: calc(100% - 46px);

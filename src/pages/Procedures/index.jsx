@@ -1,5 +1,6 @@
 /* eslint-disable no-param-reassign */
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { FaTimes } from 'react-icons/fa';
 import { Container } from "../Main/styles";
 import { Format } from "./styles";
@@ -29,6 +30,7 @@ export default function Procedures() {
 		// Adicione mais procedimentos conforme necessário
 	];
 
+	const navigate = useNavigate();
 	const [procedures] = useState(initialProcedures);
 	const [selectedProcedures, setSelectedProcedures] = useState([]);
 	const [searchText, setSearchText] = useState('');
@@ -44,7 +46,6 @@ export default function Procedures() {
 		});
 	};
 
-
 	// Remove the procedure and checked in search
 	const handleRemoveButtonClick = (procedureId) => {
 		setSelectedProcedures((prevSelected) =>
@@ -56,6 +57,15 @@ export default function Procedures() {
 			checkbox.checked = false;
 		}
 	};
+
+	 // CCheck if there are selected procedures to proceed to the status page
+	 const isProcedureSelected =() =>{
+		if(selectedProcedures.length > 0 ){
+			navigate("../Status");
+
+		}else (alert("Nenhum procedimento selecionado!\nSelecione pelo menos um e tente novamente!!"));
+	  }
+
 
 	return (
 		<Container>
@@ -107,7 +117,7 @@ export default function Procedures() {
 				</div>
 				<div className="btns">
 					<ButtonComponent clickFunction={() => alert("Botão cancelar")} childrenText="Cancelar" background="Red" height="35" width="135" />
-					<ButtonComponent clickFunction={() => alert("Botão Salvar")} childrenText="Check-In" background="#83e509" height="35" width="135" />
+					<ButtonComponent clickFunction={isProcedureSelected} childrenText="Check-In" background="#83e509" height="35" width="135" />
 
 				</div>
 
