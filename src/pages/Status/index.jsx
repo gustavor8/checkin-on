@@ -5,7 +5,7 @@ import api from "../../services/api";
 import { Container } from "../../styles/Container";
 import { Format } from "./style";
 import ButtonComponent from "../../components/Buttons/ButtonComponent";
-
+//teste do teste
 export default function Status() {
    const location = useLocation();
    const [selectedProcedures, setSelectedProcedures] = useState([]);
