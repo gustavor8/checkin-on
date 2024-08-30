@@ -1,44 +1,59 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
+/* eslint-disable react/button-has-type */
 /* eslint-disable no-param-reassign */
-import React, { useState } from "react";
+/* eslint-disable no-underscore-dangle */
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaTimes } from 'react-icons/fa';
-import { Container } from "../Main/styles";
+import { Container } from "../../styles/Container";
 import { Format } from "./styles";
 import ButtonComponent from "../../components/Buttons/ButtonComponent";
+import api from "../../services/api"
 
 
 export default function Procedures() {
-	const initialProcedures = [
-		{ id: 1, name: "Procedimento 1" },
-		{ id: 2, name: "Procedimento 2" },
-		{ id: 3, name: "Procedimento 3" },
-		{ id: 4, name: "Procedimento 4" },
-		{ id: 5, name: "Procedimento 5" },
-		{ id: 6, name: "Procedimento 6" },
-		{ id: 7, name: "Procedimento 7" },
-		{ id: 8, name: "Procedimento 8" },
-		{ id: 9, name: "Procedimento 9" },
-		{ id: 10, name: "Procedimento 10" },
-		{ id: 11, name: "Procedimento 11" },
-		{ id: 12, name: "Procedimento 12" },
-		{ id: 13, name: "Procedimento 13" },
-		{ id: 14, name: "Procedimento 14" },
-		{ id: 15, name: "Procedimento 15" },
-		{ id: 16, name: "Procedimento 16" },
-		{ id: 17, name: "Procedimento 17" },
-		{ id: 18, name: "Procedimento 18" },
+
+	const navigate = useNavigate();
+	const [procedures, setProcedures] = useState([]);
+	const [selectedProcedures, setSelectedProcedures] = useState([]);
+	const [searchText, setSearchText] = useState('');
+	
+
+	const testProcedures = [
+		{ _id: 1, nameProcedure: "Procedimento 1" },
+		{ _id: 2, nameProcedure: "Procedimento 2" },
+		{ _id: 3, nameProcedure: "Procedimento 3" },
+		{ _id: 4, nameProcedure: "Procedimento 4" },
+		{ _id: 5, nameProcedure: "Procedimento 5" },
 		// Adicione mais procedimentos conforme necessário
 	];
 
-	const navigate = useNavigate();
-	const [procedures] = useState(initialProcedures);
-	const [selectedProcedures, setSelectedProcedures] = useState([]);
-	const [searchText, setSearchText] = useState('');
+	// Load initial Procedures of db
+	useEffect(() => {
+		async function getAllProcedures() {
+			try {
+				const response = await api.get('/procedures');
+				setProcedures(response.data);
+				
+			} catch (error) {
+				// load test procedures
+				setProcedures(testProcedures);
+				// eslint-disable-next-line no-alert, prefer-template
+				alert(`Erro ao acessar o banco de dados, os dados carregados foram os de teste:\n${error.response?.data?.message || error.message}`);
+				
+			}
+		}
 
-  // checks if the checkbox is in the list of selected ones 
+		getAllProcedures();
+	}, []);
+
+	// load test
+	
+
+	// checks if the checkbox is in the list of selected ones 
 	const handleCheckboxChange = (procedure) => {
 		setSelectedProcedures((prevSelected) => {
-			const procedureId = procedure.id;
+			const procedureId = procedure._id;
 			if (prevSelected.includes(procedureId)) {
 				return prevSelected.filter((id) => id !== procedureId);
 			}
@@ -51,20 +66,21 @@ export default function Procedures() {
 		setSelectedProcedures((prevSelected) =>
 			prevSelected.filter((id) => id !== procedureId)
 		);
-		// Remova o check do procedimento na div de pesquisa
+
+		// Remove check procedure div 
 		const checkbox = document.getElementById(`procedure-${procedureId}`);
 		if (checkbox) {
 			checkbox.checked = false;
 		}
 	};
 
-	 // CCheck if there are selected procedures to proceed to the status page
-	 const isProcedureSelected =() =>{
-		if(selectedProcedures.length > 0 ){
-			navigate("../Status");
+	// Check if there are selected procedures to proceed to the status page
+	const isProcedureSelected = () => {
+		if (selectedProcedures.length > 0) {
+			navigate("../Status", { replace: true, state: { selectedProcedures } });
 
-		}else (alert("Nenhum procedimento selecionado!\nSelecione pelo menos um e tente novamente!!"));
-	  }
+		} else (alert("Nenhum procedimento selecionado!\nSelecione pelo menos um e tente novamente!!"));
+	}
 
 
 	return (
@@ -83,16 +99,16 @@ export default function Procedures() {
 					/>
 					<div className="resultSearch">
 						{procedures
-							.filter((procedure) => procedure.name.toLowerCase().includes(searchText.toLowerCase()))
+							.filter((procedure) => procedure.nameProcedure.toLowerCase().includes(searchText.toLowerCase()))
 							.map((procedure) => (
-								<div className="procedure" key={procedure.id}>
+								<div className="procedure" key={procedure._id}>
 									<input
 										type="checkbox"
-										id={`procedure-${procedure.id}`}
-										checked={selectedProcedures.includes(procedure.id)}
+										id={`procedure-${procedure._id}`}
+										checked={selectedProcedures.includes(procedure._id)}
 										onChange={() => handleCheckboxChange(procedure)}
 									/>
-									<label htmlFor={`procedure-${procedure.id}`}>{procedure.name}</label>
+									<label htmlFor={`procedure-${procedure._id}`}>{procedure.nameProcedure}</label>
 								</div>
 							))
 						}
@@ -105,11 +121,11 @@ export default function Procedures() {
 					<div className="procedureOnSelect">
 						<ul>
 							{selectedProcedures.map((selectedId) => (
-								<div className="procedureSelected">
-									<li key={selectedId}>{procedures.find((p) => p.id === selectedId)?.name}</li>
-									<submit className="button" onClick={() => handleRemoveButtonClick(selectedId)}>
+								<div className="procedureSelected" key={selectedId}>
+									<li key={selectedId}>{procedures.find((p) => p._id === selectedId)?.nameProcedure}</li>
+									<button className="button" onClick={() => handleRemoveButtonClick(selectedId)} type="button">
 										<FaTimes id="remove" />
-									</submit>
+									</button>
 								</div>
 							))}
 						</ul>
@@ -120,7 +136,6 @@ export default function Procedures() {
 					<ButtonComponent clickFunction={isProcedureSelected} childrenText="Check-In" background="#83e509" height="35" width="135" />
 
 				</div>
-
 			</Format>
 		</Container>
 	);

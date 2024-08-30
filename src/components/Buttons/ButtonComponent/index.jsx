@@ -19,8 +19,8 @@ function ButtonComponent({ clickFunction, childrenText, width, height, backgroun
 ButtonComponent.propTypes = {
   clickFunction: PropTypes.func.isRequired,
   childrenText: PropTypes.string.isRequired,
-  width: PropTypes.number, // width é agora opcional
-  height: PropTypes.number, // height é agora opcional
+  width: PropTypes.string, // width é agora opcional
+  height: PropTypes.string, // height é agora opcional
   background: PropTypes.string
 };
 // quando não requerido é necessário passar um padrão por prevenção somente para não dar erro no slint, porque já está sendo tratado no estilo

@@ -7,7 +7,6 @@ export const Container = styled.div`
   box-shadow: 2px 2px 2px 2px black, -2px -2px 0.4em black;
   background: linear-gradient(180deg, #ffffff 0%, #c8c8d9 100%);
   
-  
   .main-higher {
     height:50%;
     min-height: 275px;

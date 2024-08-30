@@ -1,8 +1,7 @@
 /* eslint-disable no-param-reassign */
 import React from "react";
 import { useNavigate } from "react-router-dom";
-
-import { Container } from "./styles";
+import { Container } from "../../styles/Container";
 import ButtonComponent from "../../components/Buttons/ButtonComponent";
 
 export default function Main() {
@@ -57,9 +56,6 @@ export default function Main() {
     // Se passou por todas as verificações, o CPF é válido
     return true;
   }
-  
-  
-  
 
   const handleButtonClick = () => {
     // eslint-disable-next-line prefer-const
@@ -67,8 +63,7 @@ export default function Main() {
 
     if(validateCPF(cpfForValidate)){
       // Navegar diretamente para a rota desejada
-      navigate("../Procedures");
-
+      navigate('/Procedures');
     }
     else(alert("CPF informado não confere com os parâmetros de validação! \n Verifique o CPF digitado e tente novamente!!!")); 
     
