@@ -1,9 +1,0 @@
-{
-  "plugins": [
-    "@babel/plugin-transform-unicode-property-regex",
-    "@babel/plugin-transform-optional-chaining",
-    "@babel/plugin-transform-object-rest-spread",
-    "@babel/plugin-transform-optional-catch-binding",
-    "@babel/plugin-transform-async-generator-functions"
-  ]
-}
