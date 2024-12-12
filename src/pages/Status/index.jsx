@@ -5,6 +5,7 @@ import api from "../../services/api";
 import { Container } from "../../styles/Container";
 import { Format } from "./style";
 import ButtonComponent from "../../components/Buttons/ButtonComponent";
+
 export default function Status() {
    const location = useLocation();
    const [selectedProcedures, setSelectedProcedures] = useState([]);
@@ -59,11 +60,11 @@ export default function Status() {
                
                <div className="serviceInfo">
                   <h4 className="headerInfo">Posição: </h4>
-                  <h4 className="bodyInfo">Previsão de Atendimento: </h4>
+                  <h4 className="bodyInfo"> 1 </h4>
                </div>
             </div>
-            <div className="buttons">
-               <ButtonComponent clickFunction={() => alert("Botão Atualizar")} childrenText="Atualizar" background="#111" height="35" width="135" />
+            <div className="btns">
+               <ButtonComponent clickFunction={() => alert("Botão Atualizar")} childrenText="Atualizar" background="green" height="35" width="135" />
                <ButtonComponent clickFunction={() => alert("Botão Cancelar chekin")} childrenText="Cancelar" background="Red" height="35" width="135" />
             </div>
 
